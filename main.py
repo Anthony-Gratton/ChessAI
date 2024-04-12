@@ -1,8 +1,10 @@
 import chess
 from Constants import valueTable 
+from randomBoard import stockfish, random_board
+
 
 board = chess.Board()
-
+print(stockfish(random_board(), 200))
 
 
 
