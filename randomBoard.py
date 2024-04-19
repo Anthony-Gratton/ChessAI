@@ -20,9 +20,8 @@ def random_board(max_depth=200):
 
 
 # this function will create our f(x) (score)
-def stockfish(board : chess.Board, depth):
+def stockfish(board: chess.Board, depth):
     boardfen = board.board_fen()
-    stockfishinstance = Stockfish(path=)
+    stockfishinstance = Stockfish(path="D:/2060246/ChessAI/stockfish-windows-x86-64-avx2/stockfish/stockfish.exe")
     stockfishinstance.set_fen_position(boardfen)
-
     return stockfishinstance.get_evaluation()
