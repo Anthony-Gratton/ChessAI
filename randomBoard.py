@@ -14,14 +14,22 @@ def random_board(max_depth=200):
         random_move = random.choice(all_moves)
         board.push(random_move)
         if board.is_game_over():
+            board.pop()
             break
 
     return board
 
 
 # this function will create our f(x) (score)
-def stockfish(board: chess.Board, depth):
+def stockfish(board: chess.Board):
     boardfen = board.board_fen()
     stockfishinstance = Stockfish(path="D:/2060246/ChessAI/stockfish-windows-x86-64-avx2/stockfish/stockfish.exe")
     stockfishinstance.set_fen_position(boardfen)
-    return stockfishinstance.get_evaluation()
+    try:
+        boardev = stockfishinstance.get_evaluation()
+        boardev["board"] = board
+        del stockfishinstance
+        return boardev
+    except:
+        del stockfishinstance
+        return {'type': 'none', 'value': 0, 'board': ''}
